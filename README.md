@@ -5,7 +5,7 @@ A dead simple [statsd] client written in Scala as group of actors using the [akk
 
 ## Naming conventions
 
-The New Motion recommands using the following naming conventions:
+The New Motion recommends using the following naming conventions:
 
 A 'bucket' consists of a namespace part and a hierarchy part
 
