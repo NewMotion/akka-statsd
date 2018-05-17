@@ -295,6 +295,10 @@ Forked from github repo at [cfeduke/akka-actor-statsd](https://github.com/cfeduk
 
 ## Changelog
 
+### 3.0.1
+
+Fixed a bug where akka-statsd-http-server StatsDirective would create a new actor for every stat it sends
+
 ### 3.0.0
 
 #### General
