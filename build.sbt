@@ -7,8 +7,10 @@ val commonSettings = Seq(
   homepage := Some(url("https://github.com/NewMotion/akka-statsd")),
   libraryDependencies ++= Seq(
     akka("testkit"),
-    "org.scalatest" %% "scalatest" % "3.0.5"
+    "org.scalatest" %% "scalatest" % "3.0.8"
   ).map(_ % "test"),
+  scalaVersion := tnm.ScalaVersion.prev,
+  crossScalaVersions := Seq(tnm.ScalaVersion.aged, tnm.ScalaVersion.curr, tnm.ScalaVersion.prev) ,
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies,
@@ -76,8 +78,8 @@ val `akka-statsd` =
 
 def akka(lib: String) = {
   val version = lib match {
-    case x if x.startsWith("http") => "10.1.5"
-    case _ => "2.5.18"
+    case x if x.startsWith("http") => "10.1.8"
+    case _ => "2.5.23"
   }
 
   "com.typesafe.akka" %% s"akka-$lib" % version
