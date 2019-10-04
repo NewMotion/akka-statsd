@@ -1,5 +1,5 @@
 # akka-statsd
-[![Build Status](https://travis-ci.org/NewMotion/akka-statsd.svg?branch=master)](https://travis-ci.org/NewMotion/akka-statsd)
+[![Build Status](https://circleci.com/gh/NewMotion/akka-statsd.svg?style=svg)](https://circleci.com/gh/NewMotion/akka-statsd)
 
 A dead simple [statsd] client written in Scala as group of actors using the [akka] framework.
 
