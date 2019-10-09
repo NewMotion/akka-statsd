@@ -1,9 +1,11 @@
 import ReleaseTransformations._
+import tnm.ScalaVersion
 
 val commonSettings = Seq(
   organization := "com.newmotion",
   licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT")),
   homepage := Some(url("https://github.com/NewMotion/akka-statsd")),
+  crossScalaVersions := Seq(ScalaVersion.curr, ScalaVersion.prev, ScalaVersion.aged),
   libraryDependencies ++= Seq(
     akka("testkit"),
     "org.scalatest" %% "scalatest" % "3.0.8"
