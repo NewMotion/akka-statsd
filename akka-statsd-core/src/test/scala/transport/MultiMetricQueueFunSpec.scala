@@ -1,13 +1,11 @@
 package akka.statsd
 package transport
 
-import org.scalatest.FunSpecLike
-import akka.statsd.TestKit
-
+import org.scalatest.funspec.AnyFunSpecLike
 
 class MultiMetricQueueFunSpec
   extends TestKit("mmq-spec")
-  with FunSpecLike {
+  with AnyFunSpecLike {
 
   describe("A MultiMetricQueue") {
     describe("when empty") {

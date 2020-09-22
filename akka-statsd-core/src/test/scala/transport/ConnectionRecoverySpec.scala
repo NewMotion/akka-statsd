@@ -2,15 +2,13 @@ package akka.statsd
 package transport
 
 import akka.actor._
-
-import org.scalatest._
 import akka.testkit.ImplicitSender
 import Connection._
-
+import org.scalatest.funspec.AnyFunSpecLike
 
 class ConnectionRecoverySpec
   extends TestKit("connection-recovery-spec")
-  with FunSpecLike
+  with AnyFunSpecLike
   with ImplicitSender {
 
   def expectConnectionOpened = expectMsg(Opened)

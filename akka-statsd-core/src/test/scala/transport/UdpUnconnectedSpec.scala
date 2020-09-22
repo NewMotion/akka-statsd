@@ -5,16 +5,18 @@ import akka.io._
 import akka.statsd.{TestKit, UdpListener}
 import akka.testkit.ImplicitSender
 import java.net.InetSocketAddress
-import org.scalatest.fixture.FunSpecLike
+
+import org.scalatest.Outcome
+import org.scalatest.funspec.FixtureAnyFunSpecLike
 
 class UdpUnconnectedSpec
   extends TestKit("udp-unconnected-spec")
-  with FunSpecLike
+  with FixtureAnyFunSpecLike
   with ImplicitSender {
 
   type FixtureParam = ActorRef
 
-  override def withFixture(test: OneArgTest) = {
+  override def withFixture(test: OneArgTest): Outcome = {
     val listener = system.actorOf(UdpListener.props(testActor), "other-end")
     val boundListenerAddress = expectMsgClass(classOf[InetSocketAddress])
 

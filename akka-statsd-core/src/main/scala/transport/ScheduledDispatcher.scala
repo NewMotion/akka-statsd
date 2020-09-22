@@ -36,7 +36,7 @@ private[statsd] class ScheduledDispatcher(
     else
       noopSchedule
 
-  def receive = {
+  def receive: Receive = {
     case msg: String =>
       if (enableMultiMetric) {
         val _ = mmq.enqueue(msg)
@@ -48,7 +48,7 @@ private[statsd] class ScheduledDispatcher(
       else mmq.payload().foreach(connection ! _)
   }
 
-  override def postStop() {
+  override def postStop(): Unit = {
     val _ = recurringTransmit.cancel()
   }
 
@@ -64,6 +64,6 @@ private[statsd] object ScheduledDispatcher {
     def cancel() = true
   }
 
-  def props(config: Config, connection: Props) =
+  def props(config: Config, connection: Props): Props =
     Props(new ScheduledDispatcher(config, connection))
 }

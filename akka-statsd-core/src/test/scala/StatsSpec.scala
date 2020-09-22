@@ -4,17 +4,17 @@ package actor
 import scala.concurrent.duration._
 import com.typesafe.config.ConfigFactory
 import java.net.InetSocketAddress
+
 import akka.io.Udp
 import akka.actor._
 import akka.testkit.ImplicitSender
-import org.scalatest.{WordSpecLike, Matchers}
-
+import org.scalatest.matchers.should.Matchers._
+import org.scalatest.wordspec.AnyWordSpecLike
 
 class StatsSpec
-  extends TestKit("stats-spec")
-  with WordSpecLike
-  with Matchers
-  with ImplicitSender {
+    extends TestKit("stats-spec")
+    with AnyWordSpecLike
+    with ImplicitSender {
 
   "Stats" when {
     "initialized with an empty namespace" should {
@@ -54,11 +54,10 @@ class StatsSpec
     "sending multiple messages quickly in sequence" should {
       "transmit all the messages" in new Environment {
         val stats = system.actorOf(statsProps, "stats-mmsg")
-        val msgs = Seq(
-          Timing(Bucket("xyz"))(40.seconds),
-          Increment(Bucket("ninjas")),
-          Decrement(Bucket("pirates")),
-          Gauge(Bucket("ratchet"))(0xDEADBEEF))
+        val msgs = Seq(Timing(Bucket("xyz"))(40.seconds),
+                       Increment(Bucket("ninjas")),
+                       Decrement(Bucket("pirates")),
+                       Gauge(Bucket("ratchet"))(0xDEADBEEF))
         msgs.foreach(stats ! _)
 
         expectMsg(msgs.mkString("\n").stripLineEnd)
@@ -81,9 +80,10 @@ class StatsSpec
   }
 
   private class Environment {
-    def forwarder = Props(new Actor {
-      def receive = { case any => testActor forward any }
-    })
+    def forwarder =
+      Props(new Actor {
+        def receive = { case any => testActor forward any }
+      })
 
     val listener = system.actorOf(UdpListener.props(testActor))
     def boundListenerAddress() = expectMsgClass(classOf[InetSocketAddress])

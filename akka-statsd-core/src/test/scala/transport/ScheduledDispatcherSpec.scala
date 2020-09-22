@@ -2,16 +2,15 @@ package akka.statsd
 package transport
 
 import scala.concurrent.duration._
-import org.scalatest.{WordSpecLike, Matchers}
 import akka.testkit.ImplicitSender
 import akka.actor._
-import com.typesafe.config.{ConfigValueFactory, ConfigFactory}
-
+import com.typesafe.config.{ConfigFactory, ConfigValueFactory}
+import org.scalatest.matchers.should.Matchers._
+import org.scalatest.wordspec.AnyWordSpecLike
 
 class ScheduledDispatcherSpec
   extends TestKit("scheduled-dispatcher-spec")
-  with WordSpecLike
-  with Matchers
+  with AnyWordSpecLike
   with ImplicitSender {
 
   "ScheduledDispatcher" when {

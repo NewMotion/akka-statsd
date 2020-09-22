@@ -1,4 +1,3 @@
-import com.typesafe.sbt.pgp.PgpKeys
 import ReleaseTransformations._
 
 val commonSettings = Seq(
@@ -7,8 +6,10 @@ val commonSettings = Seq(
   homepage := Some(url("https://github.com/NewMotion/akka-statsd")),
   libraryDependencies ++= Seq(
     akka("testkit"),
-    "org.scalatest" %% "scalatest" % "3.0.5"
+    "org.scalatest" %% "scalatest" % "3.2.2"
   ).map(_ % "test"),
+  scalaVersion := tnm.ScalaVersion.curr,
+  crossScalaVersions := Seq(tnm.ScalaVersion.curr, tnm.ScalaVersion.prev),
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies,
@@ -55,7 +56,7 @@ val `akka-statsd-http-server` = project
     libraryDependencies ++= Seq(
       akka("http"),
       akka("stream"),
-      "org.scala-lang.modules" %% "scala-java8-compat" % "0.9.0",
+      "org.scala-lang.modules" %% "scala-java8-compat" % "0.9.1",
       akka("http-testkit") % "test"
     )
   )
@@ -76,8 +77,8 @@ val `akka-statsd` =
 
 def akka(lib: String) = {
   val version = lib match {
-    case x if x.startsWith("http") => "10.1.5"
-    case _ => "2.5.18"
+    case x if x.startsWith("http") => "10.2.0"
+    case _ => "2.6.9"
   }
 
   "com.typesafe.akka" %% s"akka-$lib" % version

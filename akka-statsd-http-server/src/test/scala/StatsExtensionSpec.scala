@@ -4,15 +4,15 @@ import akka.actor.ActorSystem
 import akka.statsd._
 import akka.testkit._
 import com.typesafe.config.ConfigFactory
-import org.scalatest.{path => _, _}
+import org.scalatest.funspec.AnyFunSpecLike
+import org.scalatest.matchers.must.Matchers._
 
 class StatsExtensionSpec
   extends {
     override implicit val system = ActorSystem()
   }
   with TestKitBase
-  with FunSpecLike
-  with MustMatchers {
+  with AnyFunSpecLike {
 
   def loadStatsConfig =
     Config(ConfigFactory.parseString(

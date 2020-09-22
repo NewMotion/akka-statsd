@@ -29,7 +29,7 @@ private[transport] class SingleAddressConnection(
   import context.system
   import Connection._
 
-  def receive = initial
+  def receive: Receive = initial
 
   def initial: Receive = {
     case Open =>

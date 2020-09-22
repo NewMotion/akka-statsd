@@ -1,12 +1,10 @@
 package akka.statsd
 
-import org.scalatest.{FunSpec, Matchers}
-import com.typesafe.config.{ConfigFactory, ConfigException}
+import com.typesafe.config.{ConfigException, ConfigFactory}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers._
 
-
-class ConfigSpec
-  extends FunSpec
-  with Matchers {
+class ConfigSpec extends AnyFunSpec {
 
   describe("Config") {
     it("falls back to the default port when its not specified") {

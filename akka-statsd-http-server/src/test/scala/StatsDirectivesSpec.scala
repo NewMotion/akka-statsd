@@ -1,7 +1,6 @@
 package akka.statsd.http.server
 
 import scala.concurrent.duration._
-import org.scalatest.{path => _, _}
 import akka.testkit._
 import com.typesafe.config.ConfigFactory
 import akka.actor.{ActorRef, ActorSystem}
@@ -12,16 +11,17 @@ import Directives._
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity, StatusCodes}
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
+import org.scalatest.funspec.AnyFunSpecLike
+import org.scalatest.matchers.must.Matchers._
 
 class StatsDirectivesSpec
   extends {
     override implicit val system = ActorSystem()
   }
   with TestKitBase
-  with FunSpecLike
+  with AnyFunSpecLike
   with ScalatestRouteTest
-  with StatsDirectives
-  with MustMatchers {
+  with StatsDirectives {
 
   def actorRefFactory = system
 

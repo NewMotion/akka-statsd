@@ -7,12 +7,15 @@ import akka.statsd.http.client.StatsClient.ReqRes
 import akka.statsd.{Config, Increment, Timing}
 import akka.testkit.{TestKitBase, TestProbe}
 import com.typesafe.config.ConfigFactory
-import org.scalatest.{Assertion, AsyncFunSpecLike, MustMatchers}
+import org.scalatest.funspec.AsyncFunSpecLike
+import org.scalatest.Assertion
+import org.scalatest.matchers.must.Matchers._
+
 import scala.concurrent.Future
 
 class StatsClientSpec extends {
   override implicit val system: ActorSystem = ActorSystem()
-} with TestKitBase with AsyncFunSpecLike with MustMatchers {
+} with TestKitBase with AsyncFunSpecLike {
 
   implicit val statsConfig =
     Config(

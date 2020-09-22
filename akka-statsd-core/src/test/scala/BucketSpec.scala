@@ -1,11 +1,9 @@
 package akka.statsd
 
-import org.scalatest._
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers._
 
-
-class BucketSpec
-  extends FunSpec
-  with MustMatchers {
+class BucketSpec extends AnyFunSpec {
 
   describe("Bucket") {
 
@@ -30,7 +28,8 @@ class BucketSpec
     }
 
     it("has UUIDs substituted for [id]") {
-      Bucket(java.util.UUID.randomUUID.toString).render must equal(Bucket("[id]").render)
+      Bucket(java.util.UUID.randomUUID.toString).render must equal(
+        Bucket("[id]").render)
     }
 
     it("does not substituted UUIDs for [id] when disabled") {
@@ -67,7 +66,8 @@ class BucketSpec
     }
 
     it("prepended with namespace same as namespace followed by bucket") {
-      Bucket("bucket").prepend("ns").render must equal((Bucket("ns")/"bucket").render)
+      Bucket("bucket").prepend("ns").render must equal(
+        (Bucket("ns") / "bucket").render)
     }
   }
 }

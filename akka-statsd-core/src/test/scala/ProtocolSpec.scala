@@ -1,12 +1,10 @@
 package akka.statsd
 
-import org.scalatest.{Matchers, WordSpec}
 import scala.concurrent.duration._
+import org.scalatest.matchers.should.Matchers._
+import org.scalatest.wordspec.AnyWordSpec
 
-
-class ProtocolSpec
-  extends WordSpec
-  with Matchers {
+class ProtocolSpec extends AnyWordSpec {
 
   "A Metric implementation" when {
     "invoking toString" when {
