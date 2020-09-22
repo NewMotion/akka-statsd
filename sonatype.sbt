@@ -1,9 +1,4 @@
 pomExtra in Global := {
-  <scm>
-    <connection>scm:git:git@github.com:NewMotion/akka-statsd.git</connection>
-    <developerConnection>scm:git:git@github.com:NewMotion/akka-statsd.git</developerConnection>
-    <url>git@github.com:NewMotion/akka-statsd.git</url>
-  </scm>
   <developers>
     <developer>
       <id>fedgehog</id>
